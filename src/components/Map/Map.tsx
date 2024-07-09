@@ -12,7 +12,7 @@ export default function Map() {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      setShowGeolo((prevShow) => (prevShow = true))
+      setShowGeolo(true)
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const map = new naver.maps.Map("map", {
@@ -28,7 +28,7 @@ export default function Map() {
         },
         (err) => {
           console.log("you would get a concrete error message!", err)
-          setShowGeolo((prevShow) => (prevShow = false))
+          setShowGeolo(false)
         }
       )
     } else {
