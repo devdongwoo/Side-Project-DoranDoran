@@ -5,11 +5,7 @@ import { setGeolocation } from "../../utilities/setter/map"
 import Button from "../Button/Button"
 import Board from "../Board/Board"
 
-interface IMap {
-  flatform?: string
-}
-
-export default function Map({ flatform = "naver" }: IMap) {
+export default function Map() {
   const [showGeolo, setShowGeolo] = useState(false)
 
   const [community, setCommunity] = useState(false)
@@ -31,7 +27,7 @@ export default function Map({ flatform = "naver" }: IMap) {
           setGeolocation({ latitude, longitude }, map, infowindow)
         },
         (err) => {
-          console.log("you would get a concrete error message!")
+          console.log("you would get a concrete error message!", err)
           setShowGeolo((prevShow) => (prevShow = false))
         }
       )
