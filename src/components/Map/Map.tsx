@@ -21,7 +21,7 @@ export default function Map() {
             mapTypeId: naver.maps.MapTypeId.NORMAL
           })
 
-          const infowindow = new naver.maps.InfoWindow()
+          const infowindow = new naver.maps.InfoWindow({ content: "" })
 
           const { latitude, longitude } = position.coords
           setGeolocation({ latitude, longitude }, map, infowindow)
