@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react"
+
 import { setGeolocation } from "../../utilities/setter/map"
+
+import Button from "../Button/Button"
+import Board from "../Board/Board"
 
 interface IMap {
   flatform?: string
@@ -7,6 +11,8 @@ interface IMap {
 
 export default function Map({ flatform = "naver" }: IMap) {
   const [showGeolo, setShowGeolo] = useState(false)
+
+  const [community, setCommunity] = useState(false)
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -40,7 +46,8 @@ export default function Map({ flatform = "naver" }: IMap) {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        position: "relative"
       }}
     >
       {showGeolo ? (
@@ -50,6 +57,10 @@ export default function Map({ flatform = "naver" }: IMap) {
           오 이런 위치 설정을 허용 해주셔야 합니다.
         </div>
       )}
+      {[0, 1, 2].map((idx) => {
+        return <Button type={idx} setCommunity={setCommunity} key={idx + 1} />
+      })}
+      {community && <Board />}
     </div>
   )
 }
